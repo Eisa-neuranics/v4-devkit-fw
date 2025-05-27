@@ -1,0 +1,2 @@
+../Core/Src/Bluetooth.c:53:7:BLE_Init	1
+../Core/Src/Bluetooth.c:69:7:BLE_Control	24

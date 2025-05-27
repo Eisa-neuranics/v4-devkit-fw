@@ -1,0 +1,7 @@
+../Core/Src/ADS1293.c:37:6:ADS1293_Init	8	static
+../Core/Src/ADS1293.c:83:6:ADS1293_PWR	16	static
+../Core/Src/ADS1293.c:129:9:ADS1293_SPIReadReg	24	static
+../Core/Src/ADS1293.c:152:6:ADS1293_SPIWriteReg	16	static
+../Core/Src/ADS1293.c:176:6:ADS1293_SPIAutoIncWriteReg	24	static
+../Core/Src/ADS1293.c:203:6:ADS1293_SPIAutoIncReadReg	24	static
+../Core/Src/ADS1293.c:223:6:ADS1293_SPIStreamReadReg	24	static

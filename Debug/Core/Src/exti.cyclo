@@ -1,0 +1,2 @@
+../Core/Src/exti.c:44:6:Exti_Init	1
+../Core/Src/exti.c:51:6:HAL_GPIO_EXTI_Callback	4

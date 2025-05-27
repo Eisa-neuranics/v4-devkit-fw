@@ -1,0 +1,9 @@
+../Core/Src/LSM6DSLTR.c:70:19:IMU_Init	32	static
+../Core/Src/LSM6DSLTR.c:112:6:IMU_Control	8	static
+../Core/Src/LSM6DSLTR.c:303:19:IMU_ReadID	32	static
+../Core/Src/LSM6DSLTR.c:309:19:IMU_ReadAccel	40	static
+../Core/Src/LSM6DSLTR.c:326:19:IMU_ReadGyro	40	static
+../Core/Src/LSM6DSLTR.c:343:6:IMU_Error	8	static
+../Core/Src/LSM6DSLTR.c:351:6:IMU_StreamDataPack	32	static
+../Core/Src/LSM6DSLTR.c:413:6:HighPassFilter_Init	32	static
+../Core/Src/LSM6DSLTR.c:429:6:HighPassFilter_Apply	24	static

@@ -1,0 +1,4 @@
+../Core/Src/IIR_Filter.c:109:6:init_combined_filter	112	static
+../Core/Src/IIR_Filter.c:151:9:apply_combined_filter	48	static
+../Core/Src/IIR_Filter.c:177:9:IIR_AFE	40	static
+../Core/Src/IIR_Filter.c:242:9:RecentValueIndex	24	static

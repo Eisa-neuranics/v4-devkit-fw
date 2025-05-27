@@ -1,0 +1,3 @@
+../Core/Src/debug.c:46:6:Debug_Init	8	static
+../Core/Src/debug.c:54:6:Debug_Control	8	static
+../Core/Src/debug.c:121:6:DIAG	4064	static

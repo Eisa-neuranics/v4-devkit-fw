@@ -1,0 +1,11 @@
+../STM32_WPAN/App/custom_app.c:109:6:ALL_SENs_Task	8	static
+../STM32_WPAN/App/custom_app.c:120:6:ACCEL_Task	8	static
+../STM32_WPAN/App/custom_app.c:135:6:Custom_STM_App_Notification	16	static
+../STM32_WPAN/App/custom_app.c:228:6:Custom_APP_Notification	16	static
+../STM32_WPAN/App/custom_app.c:265:6:Custom_APP_Init	4	static
+../STM32_WPAN/App/custom_app.c:284:6:Custom_Accel_s_Update_Char	16	static
+../STM32_WPAN/App/custom_app.c:303:6:Custom_Accel_s_Send_Notification	16	static
+../STM32_WPAN/App/custom_app.c:324:6:Custom_Ecg_s_Update_Char	16	static
+../STM32_WPAN/App/custom_app.c:343:6:Custom_Ecg_s_Send_Notification	16	static
+../STM32_WPAN/App/custom_app.c:363:6:Custom_All_sens_Update_Char	16	static
+../STM32_WPAN/App/custom_app.c:382:6:Custom_All_sens_Send_Notification	16	static
