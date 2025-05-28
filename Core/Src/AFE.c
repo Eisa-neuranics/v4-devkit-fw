@@ -54,7 +54,9 @@
  Filter 	combined_filter;
  int 		num_samples = 3;
 
-
+ float angle = 0.0f;
+ const float step = 0.1f;
+ const float TWO_PI = 6.28318530718f;
 
 
 
@@ -180,12 +182,19 @@
 
 
 
-
-
- 	  			num_samples++;
+ 	  			  num_samples++;
  	  			  if ( num_samples > 5)
  	  			  {
- 	 	  			  // Count SPS
+ 	  				  float value1 = sinf(angle);
+ 	  				  float value2 = cosf(angle);
+
+ 	  				  angle += step;
+ 	  				  if (angle > TWO_PI) angle -= TWO_PI; // Wrap around
+
+ 	  				  tsDebug.i16TxTMR1 = (int) (value1 * 1000);
+ 	  				  tsDebug.i16TxTMR2 = (int) (value2 * 1000);
+
+ 	  				  // Count SPS
  	 	  			  AFE.u16SampleCount++;
  	 	  			  num_samples = 0;
  	 	  			  eAFE_STATE = AFE_STATE_PROCESS_DATA;
@@ -224,33 +233,14 @@
  	  		  EMG.Vin = ( 2.4 * ( ( (2.0 * (double)EMG.Input ) / (double)ADC_MAX ) - 1.0 ) ) / (double)ADC_GAIN;
  	  		  EMG.Raw[Temp_buff_count] = (int)(EMG.Vin * 1000000);
 
-
- 	  		  // Apply Bandpass filter
-
-// 	  		  TMR1.TempFilter [Temp_buff_count] = apply_filter(&bandpass_filter, TMR1.Raw[Temp_buff_count]);
-// 	  		  // Apply Bandpass filter
-// 	  		  TMR2.TempFilter [Temp_buff_count] = apply_filter(&bandpass_filter, TMR2.Raw[Temp_buff_count]);
-// 	  		  // Apply Bandpass filter
-// 	  		  EMG.TempFilter  [Temp_buff_count] = apply_filter(&bandpass_filter, EMG.Raw[Temp_buff_count]);
-
-// 	  		  TMR1.Filtered [Temp_buff_count] = apply_combined_filter(&combined_filter, TMR1.Raw[Temp_buff_count]);
-// 	  		  // Apply Bandpass filter
-// 	  		  TMR2.Filtered [Temp_buff_count] = apply_combined_filter(&combined_filter, TMR2.Raw[Temp_buff_count]);
-// 	  		  // Apply Bandpass filter
-// 	  		  EMG.Filtered  [Temp_buff_count] = apply_combined_filter(&combined_filter, EMG.Raw[Temp_buff_count]);
+// 	  		  TMR1.Filtered [Temp_buff_count] = IIR_AFE ( &TMR1, Temp_buff_count);
+// 	  		  TMR2.Filtered [Temp_buff_count] = IIR_AFE ( &TMR2, Temp_buff_count);
+// 	  		  EMG.Filtered  [Temp_buff_count] = IIR_AFE ( &EMG, Temp_buff_count);
 
 
- 	  		  TMR1.Filtered [Temp_buff_count] = IIR_AFE ( &TMR1, Temp_buff_count);
- 	  		  TMR2.Filtered [Temp_buff_count] = IIR_AFE ( &TMR2, Temp_buff_count);
- 	  		  EMG.Filtered  [Temp_buff_count] = IIR_AFE ( &EMG, Temp_buff_count);
-
-
-
-
-// 	  		  EMG.Filtered  [Temp_buff_count] = ( TMR1.Filtered [Temp_buff_count] + TMR2.Filtered [Temp_buff_count] ) /2;
-
-
-
+ 	  		 	  		  TMR1.Filtered [Temp_buff_count] = tsDebug.i16TxTMR1;
+ 	  		 	  		  TMR2.Filtered [Temp_buff_count] = tsDebug.i16TxTMR2;
+// 	  		 	  		  EMG.Filtered  [Temp_buff_count] = IIR_AFE ( &EMG, Temp_buff_count);
 
 
 
@@ -266,15 +256,15 @@
  			  #ifdef DATA_DEBUG_EN
  				  if (tsCmd.TMR == true && tsCmd.EMG == true)
  				  {
- 					 tsDebug.i16TxTMR1 = TMR1.Filtered [Temp_buff_count];
- 					 tsDebug.i16TxTMR2 = TMR2.Filtered [Temp_buff_count];
- 					 tsDebug.i16TxEMG  = EMG.Filtered  [Temp_buff_count];
+// 					 tsDebug.i16TxTMR1 = TMR1.Filtered [Temp_buff_count];
+// 					 tsDebug.i16TxTMR2 = TMR2.Filtered [Temp_buff_count];
+// 					 tsDebug.i16TxEMG  = EMG.Filtered  [Temp_buff_count];
  				  }
  				  else if (tsCmd.TMR == true && tsCmd.EMG == false )
  				  {
-  					 tsDebug.i16TxTMR1 = TMR1.Filtered [Temp_buff_count];
-  					 tsDebug.i16TxTMR2 = TMR2.Filtered [Temp_buff_count];
-  					 tsDebug.i16TxEMG  = 0x00;
+//  					 tsDebug.i16TxTMR1 = TMR1.Filtered [Temp_buff_count];
+//  					 tsDebug.i16TxTMR2 = TMR2.Filtered [Temp_buff_count];
+//  					 tsDebug.i16TxEMG  = 0x00;
  				  }
 
  				  else if (tsCmd.TMR == false && tsCmd.EMG == true )
