@@ -83,6 +83,13 @@ uint8_t DBG_TX[64];
 //------------------------------------------------------------------------------------------//
 void Kernel_Init (void)
 {
+
+	tsSystem.bPowerOnFlag = false;
+	HAL_Delay(250);
+	ENABLE_PWR;
+
+	tsSystem.ON = true;
+
 	SET_RGB_COLOR(GREEN);
 	HAL_Delay(250);
 	SET_RGB_COLOR(OFF);
@@ -92,8 +99,6 @@ void Kernel_Init (void)
 	SET_RGB_COLOR(OFF);
 	HAL_Delay(250);
 	SET_RGB_COLOR(GREEN);
-
-
 
 	tsCmd.MODE		= Start;
 	tsCmd.LED		= true;
@@ -108,16 +113,16 @@ void Kernel_Init (void)
 	tsCmd.EMG_HPF	= true;
 
 
-	tsSystem.Power	= true;
-	tsBle.Connected	= false;
-
 	DIAG ("-----------------------------------------\r\n");
 	HAL_Delay(1);
 	DIAG (" System ON ->\t%s\r\n\n", DEVICE_INFO);
-	HAL_Delay(1);
+	HAL_Delay(500);
 
 	// Wait until USB being recognised by the PC.
 
+
+	tsBle.Connected	= false;
+	tsSystem.Power	= true;
 
 }
 
@@ -132,6 +137,8 @@ void Main_Process (void)
 	{
 
 	default:
+
+
 		eSYS_STATE = SYS_STATE_INIT;
 		break;
 		//----------------------------------------------------
@@ -252,7 +259,6 @@ void Main_Process (void)
 			Print_Help();
 			tsCmd.HLP = false;
 		}
-
 					#ifdef WBxx_BLE
 						if ( tsBle.Connected )
 						{
@@ -269,6 +275,27 @@ void Main_Process (void)
 							 #endif
 						}
 					#endif
+
+		eSYS_STATE = SYS_STATE_OBSERVE_POWER;
+		break;
+		//----------------------------------------------------
+
+	case SYS_STATE_OBSERVE_POWER:
+
+		if (tsSystem.ON)
+		{
+			if ( tsSystem.OFF)
+			{
+				SET_RGB_COLOR(RED);
+				HAL_Delay(1000);
+				DISABLE_PWR;
+			}
+
+			if ( HAL_GPIO_ReadPin( GPIOA, PWR_SW_Pin ) == true )
+			{
+				tsSystem.bPowerOnFlag = true;
+			}
+		}
 
 		eSYS_STATE = SYS_STATE_NORMAL;
 		break;

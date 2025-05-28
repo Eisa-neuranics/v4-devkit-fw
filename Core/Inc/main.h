@@ -68,9 +68,9 @@ void MX_USART1_UART_Init(void);
 #define IMU_INT1_Pin GPIO_PIN_4
 #define IMU_INT1_GPIO_Port GPIOA
 #define IMU_INT1_EXTI_IRQn EXTI4_IRQn
-#define IMU_INT2_Pin GPIO_PIN_5
-#define IMU_INT2_GPIO_Port GPIOA
-#define IMU_INT2_EXTI_IRQn EXTI9_5_IRQn
+#define PWR_SW_Pin GPIO_PIN_5
+#define PWR_SW_GPIO_Port GPIOA
+#define PWR_SW_EXTI_IRQn EXTI9_5_IRQn
 #define IMU_CS_Pin GPIO_PIN_6
 #define IMU_CS_GPIO_Port GPIOA
 #define IMU_ADDR_Pin GPIO_PIN_2
@@ -81,6 +81,8 @@ void MX_USART1_UART_Init(void);
 #define RGB_G_GPIO_Port GPIOB
 #define RGB_R_Pin GPIO_PIN_4
 #define RGB_R_GPIO_Port GPIOE
+#define PWR_ON_Pin GPIO_PIN_15
+#define PWR_ON_GPIO_Port GPIOA
 #define ADS_ALARMB_Pin GPIO_PIN_6
 #define ADS_ALARMB_GPIO_Port GPIOB
 #define ADS_DRDY_Pin GPIO_PIN_7

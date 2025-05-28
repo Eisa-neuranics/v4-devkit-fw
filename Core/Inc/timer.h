@@ -59,6 +59,8 @@ typedef struct
     volatile uint16_t 	u16TimeStamp;
     volatile uint16_t  	u16Count;
 
+    volatile uint16_t 	u16PwrCount;
+
 
 } tsTIMER;
 

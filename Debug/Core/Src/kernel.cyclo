@@ -1,4 +1,4 @@
 ../Core/Src/kernel.c:84:6:Kernel_Init	1
-../Core/Src/kernel.c:128:6:Main_Process	19
-../Core/Src/kernel.c:281:6:Print_Help	1
-../Core/Src/kernel.c:359:6:Print_Setting	1
+../Core/Src/kernel.c:133:6:Main_Process	22
+../Core/Src/kernel.c:308:6:Print_Help	1
+../Core/Src/kernel.c:386:6:Print_Setting	1

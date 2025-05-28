@@ -127,6 +127,7 @@ void HAL_I2C_MspInit(I2C_HandleTypeDef* hi2c)
   /* USER CODE BEGIN I2C1_MspInit 1 */
 
   /* USER CODE END I2C1_MspInit 1 */
+
   }
 
 }
@@ -185,6 +186,7 @@ void HAL_IPCC_MspInit(IPCC_HandleTypeDef* hipcc)
   /* USER CODE BEGIN IPCC_MspInit 1 */
 
   /* USER CODE END IPCC_MspInit 1 */
+
   }
 
 }
@@ -247,6 +249,7 @@ void HAL_RNG_MspInit(RNG_HandleTypeDef* hrng)
   /* USER CODE BEGIN RNG_MspInit 1 */
 
   /* USER CODE END RNG_MspInit 1 */
+
   }
 
 }
@@ -328,6 +331,7 @@ void HAL_RTC_MspInit(RTC_HandleTypeDef* hrtc)
   /* USER CODE BEGIN RTC_MspInit 1 */
 
   /* USER CODE END RTC_MspInit 1 */
+
   }
 
 }
@@ -391,6 +395,7 @@ void HAL_SPI_MspInit(SPI_HandleTypeDef* hspi)
   /* USER CODE BEGIN SPI1_MspInit 1 */
 
   /* USER CODE END SPI1_MspInit 1 */
+
   }
 
 }
@@ -567,6 +572,7 @@ void HAL_UART_MspInit(UART_HandleTypeDef* huart)
   /* USER CODE BEGIN USART1_MspInit 1 */
 
   /* USER CODE END USART1_MspInit 1 */
+
   }
 
 }

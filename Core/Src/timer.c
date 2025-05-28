@@ -34,6 +34,7 @@ extern		tsDEBUG				tsDebug;
 			tsAFE				AFE;
 extern		tsIMU				IMU;
 extern  	tsBLE				tsBle;
+extern		tsSYSTEM			tsSystem;
 //defines --------------------------------------------------------------------
 
 
@@ -69,15 +70,27 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef* htim)
 	// Base timer @ 1ms
 	if (htim->Instance == TIM2)
 	{
-
-//		tsTimer.bImuFlag = true;
 		// Clear the timer interrupt flag
 		__HAL_TIM_CLEAR_FLAG(htim, TIM_FLAG_UPDATE);		  // Clear the timer interrupt flag
 		tsTimer.u8TimeFlag = true;
-//		tsTimer.bImuFlag = true;
 		htim2.Init.Period = Interrupt_ms;
 
-		//DIAG ("%d\r",  i++);
+		// Detecting Power Button
+		if ( HAL_GPIO_ReadPin( GPIOA, PWR_SW_Pin ) == false && tsSystem.bPowerOnFlag == true )
+		{
+
+			tsTimer.u16PwrCount++;
+			if ( tsTimer.u16PwrCount >= PowerOffTime )
+			{
+				tsSystem.OFF = true;
+				tsTimer.u16PwrCount = PowerOffTime + 1;
+			}
+		}
+		else
+		{
+			tsTimer.u16PwrCount = 0;
+			tsSystem.OFF = false;
+		}
 	}
 
 	// Calculating AFE sampling rate
@@ -99,6 +112,8 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef* htim)
 			IMU.u16SampleCount =0;
 		}
 	}
+
+
 
 }
 

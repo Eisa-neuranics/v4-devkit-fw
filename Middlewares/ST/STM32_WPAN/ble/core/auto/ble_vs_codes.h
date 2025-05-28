@@ -1,6 +1,5 @@
 /*****************************************************************************
  * @file    ble_vs_codes.h
- * @author  MDG
  * @brief   STM32WB BLE API (vendor specific event codes)
  *          Auto-generated file: do not edit!
  *****************************************************************************
@@ -52,6 +51,9 @@
 
 /* ACI_GAP_KEYPRESS_NOTIFICATION_EVENT code */
 #define ACI_GAP_KEYPRESS_NOTIFICATION_VSEVT_CODE          0x040AU
+
+/* ACI_GAP_PAIRING_REQUEST_EVENT code */
+#define ACI_GAP_PAIRING_REQUEST_VSEVT_CODE                0x040BU
 
 /* Vendor specific codes of ACI GATT/ATT events
  */

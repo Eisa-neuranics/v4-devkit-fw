@@ -31,6 +31,7 @@
 extern	tsDEBUG			Debug;
 extern	tsADS			ADS;
 extern	tsIMU			IMU;
+extern	tsSYSTEM		tsSystem;
 
 //defines --------------------------------------------------------------------
 
@@ -67,11 +68,11 @@ void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
 	}
 
 	//----------------------------------------------
-	if (GPIO_Pin == IMU_INT2_Pin)
+	if (GPIO_Pin == PWR_ON_Pin)
 	{
-		IMU.bInt2 = true;
-		__HAL_GPIO_EXTI_CLEAR_IT(IMU_INT2_Pin);
-		DIAG (" IMU_INT2 \r\n");
+//		tsSystem.OFF = true;
+//		__HAL_GPIO_EXTI_CLEAR_IT(PWR_ON_Pin);
+//		DIAG (" PWR SW Pressed \r\n");
 	}
 
 }

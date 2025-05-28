@@ -46,7 +46,6 @@
  * Define BD_ADDR type: define proper address. Can only be GAP_PUBLIC_ADDR (0x00) or GAP_STATIC_RANDOM_ADDR (0x01)
  */
 #define CFG_IDENTITY_ADDRESS              GAP_PUBLIC_ADDR
-
 /**
  * Define privacy: PRIVACY_DISABLED or PRIVACY_ENABLED
  */
@@ -748,6 +747,7 @@ typedef enum
 
 
   /* USER CODE END CFG_SCH_Prio_Id_t */
+  CFG_SCH_PRIO_NBR
 } CFG_SCH_Prio_Id_t;
 
 /**

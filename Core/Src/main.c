@@ -71,6 +71,7 @@ DMA_HandleTypeDef hdma_usart1_tx;
 /* Private function prototypes -----------------------------------------------*/
 void SystemClock_Config(void);
 void PeriphCommonClock_Config(void);
+static void MX_RF_Init(void);
 static void MX_GPIO_Init(void);
 static void MX_DMA_Init(void);
 static void MX_IPCC_Init(void);
@@ -80,7 +81,6 @@ static void MX_RTC_Init(void);
 static void MX_I2C1_Init(void);
 static void MX_RNG_Init(void);
 static void MX_TIM1_Init(void);
-static void MX_RF_Init(void);
 /* USER CODE BEGIN PFP */
 
 
@@ -179,7 +179,7 @@ int main(void)
   /* Configure the system clock */
   SystemClock_Config();
 
-/* Configure the peripherals common clocks */
+  /* Configure the peripherals common clocks */
   PeriphCommonClock_Config();
 
   /* IPCC initialisation */
@@ -191,6 +191,7 @@ int main(void)
   /* USER CODE END SysInit */
 
   /* Initialize all configured peripherals */
+  MX_RF_Init();
   MX_GPIO_Init();
   MX_DMA_Init();
   MX_TIM2_Init();
@@ -200,7 +201,6 @@ int main(void)
   MX_I2C1_Init();
   MX_RNG_Init();
   MX_TIM1_Init();
-  MX_RF_Init();
   /* USER CODE BEGIN 2 */
 
   Kernel_Init();
@@ -332,7 +332,7 @@ static void MX_I2C1_Init(void)
 
   /* USER CODE END I2C1_Init 1 */
   hi2c1.Instance = I2C1;
-  hi2c1.Init.Timing = 0x00300B29;
+  hi2c1.Init.Timing = 0x00910B1C;
   hi2c1.Init.OwnAddress1 = 0;
   hi2c1.Init.AddressingMode = I2C_ADDRESSINGMODE_7BIT;
   hi2c1.Init.DualAddressMode = I2C_DUALADDRESS_DISABLE;
@@ -704,7 +704,7 @@ static void MX_GPIO_Init(void)
   HAL_GPIO_WritePin(GPIOA, ADS_RSTB_Pin|ADS_CS_Pin, GPIO_PIN_SET);
 
   /*Configure GPIO pin Output Level */
-  HAL_GPIO_WritePin(IMU_CS_GPIO_Port, IMU_CS_Pin, GPIO_PIN_RESET);
+  HAL_GPIO_WritePin(GPIOA, IMU_CS_Pin|PWR_ON_Pin, GPIO_PIN_RESET);
 
   /*Configure GPIO pin Output Level */
   HAL_GPIO_WritePin(IMU_ADDR_GPIO_Port, IMU_ADDR_Pin, GPIO_PIN_RESET);
@@ -722,11 +722,17 @@ static void MX_GPIO_Init(void)
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
   HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
 
-  /*Configure GPIO pins : IMU_INT1_Pin IMU_INT2_Pin */
-  GPIO_InitStruct.Pin = IMU_INT1_Pin|IMU_INT2_Pin;
+  /*Configure GPIO pin : IMU_INT1_Pin */
+  GPIO_InitStruct.Pin = IMU_INT1_Pin;
   GPIO_InitStruct.Mode = GPIO_MODE_IT_FALLING;
   GPIO_InitStruct.Pull = GPIO_PULLUP;
-  HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
+  HAL_GPIO_Init(IMU_INT1_GPIO_Port, &GPIO_InitStruct);
+
+  /*Configure GPIO pin : PWR_SW_Pin */
+  GPIO_InitStruct.Pin = PWR_SW_Pin;
+  GPIO_InitStruct.Mode = GPIO_MODE_IT_FALLING;
+  GPIO_InitStruct.Pull = GPIO_NOPULL;
+  HAL_GPIO_Init(PWR_SW_GPIO_Port, &GPIO_InitStruct);
 
   /*Configure GPIO pin : IMU_CS_Pin */
   GPIO_InitStruct.Pin = IMU_CS_Pin;
@@ -748,6 +754,13 @@ static void MX_GPIO_Init(void)
   GPIO_InitStruct.Pull = GPIO_NOPULL;
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
   HAL_GPIO_Init(RGB_R_GPIO_Port, &GPIO_InitStruct);
+
+  /*Configure GPIO pin : PWR_ON_Pin */
+  GPIO_InitStruct.Pin = PWR_ON_Pin;
+  GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
+  GPIO_InitStruct.Pull = GPIO_PULLDOWN;
+  GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
+  HAL_GPIO_Init(PWR_ON_GPIO_Port, &GPIO_InitStruct);
 
   /*Configure GPIO pin : ADS_ALARMB_Pin */
   GPIO_InitStruct.Pin = ADS_ALARMB_Pin;

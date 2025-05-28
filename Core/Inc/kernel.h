@@ -43,7 +43,11 @@ extern "C" {
 
 
 #define			Interrupt_ms		500
+#define			PowerOffTime		30	// 60 = 3000ms @50ms in TIM2
 #define 		CLEAR				0x00
+
+#define ENABLE_PWR			GPIOA->BSRR = GPIO_BSRR_BS15;
+#define DISABLE_PWR			GPIOA->BSRR = GPIO_BSRR_BR15;
 
 /* Exported types ------------------------------------------------------------*/
 
@@ -55,6 +59,7 @@ typedef enum
 	SYS_STATE_INIT_BLE,
 	SYS_STATE_NORMAL,
 	SYS_STATE_WAIT_CMD,
+	SYS_STATE_OBSERVE_POWER,
 	SYS_STATE_ERROR,
 
 	STATE_TOTAL
@@ -65,6 +70,7 @@ enum eSYS_MODE
 	Stop = 0,
 	Start,
 	Standby,
+	PowerUp,
 	PowerDown,
 	PrintHelp,
 	PrintSetting,
@@ -108,6 +114,12 @@ typedef struct
 typedef struct
 {
 	  bool 	Power;
+	  bool	ON;
+	  bool	OFF;
+	  bool	StandBy;
+	  bool	PowerSaving;
+
+	  bool	bPowerOnFlag;;
 
 }tsSYSTEM;
 

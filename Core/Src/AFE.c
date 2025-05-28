@@ -174,9 +174,35 @@
  	  			  ADS1293_SPIStreamReadReg( SpiRxData, 9 );
 
  	  			  // Count SPS
- 	  			  AFE.u16SampleCount++;
+// 	  			  AFE.u16SampleCount++;
 
- 	  			  eAFE_STATE = AFE_STATE_PROCESS_DATA;
+
+
+
+
+
+
+ 	  			num_samples++;
+ 	  			  if ( num_samples > 5)
+ 	  			  {
+ 	 	  			  // Count SPS
+ 	 	  			  AFE.u16SampleCount++;
+ 	 	  			  num_samples = 0;
+ 	 	  			  eAFE_STATE = AFE_STATE_PROCESS_DATA;
+ 	  			  }
+ 	  			  else
+ 	  			  {
+ 	  				eAFE_STATE = AFE_STATE_READ_DATA;
+ 	  			  }
+
+
+
+
+
+
+
+
+// 	  			  eAFE_STATE = AFE_STATE_PROCESS_DATA;
  	  		  }
  	  		  else
  	  		  {

@@ -20,4 +20,4 @@
 ../Core/Src/main.c:626:6:MX_USART1_UART_Init	8	static
 ../Core/Src/main.c:672:13:MX_DMA_Init	8	static
 ../Core/Src/main.c:691:13:MX_GPIO_Init	32	static
-../Core/Src/main.c:783:6:Error_Handler	8	static,ignoring_inline_asm
+../Core/Src/main.c:796:6:Error_Handler	8	static,ignoring_inline_asm

@@ -60,12 +60,11 @@ void Debug_Control (void)
 		#ifndef IMU_ENABLE
 			if ( tsDebug.bReleaseAFEData )
 			{
-				DIAG ( "%d,%d,%d\r\n", tsDebug.i16TxTMR1, tsDebug.i16TxTMR2, tsDebug.i16TxEMG );
+//				DIAG ( "%d,%d,%d\r\n", tsDebug.i16TxTMR1, tsDebug.i16TxTMR2, tsDebug.i16TxEMG );
 //				DIAG ( "%d,%d,%d,%d,%d\r\n", tsDebug.i16TxTMR1, tsDebug.i16TxTMR2, tsDebug.i16TxEMG, tsDebug.u8PacketCount[0], tsDebug.u8PacketCount[1] );
 
-//				DIAG (  "[%d - %d]-%d,%d,%d,%d\r\n",
-//						AFE.u16SPS, IMU.u16SPS,
-//						tsDebug.i16TxTMR1, tsDebug.i16TxTMR2 );
+				DIAG (  "[%d - %d]-%d,%d\r\n", AFE.u16SPS, IMU.u16SPS, tsDebug.i16TxTMR1, tsDebug.i16TxTMR2 );
+
 				tsDebug.bReleaseAFEData= false;
 			}
 		#endif
